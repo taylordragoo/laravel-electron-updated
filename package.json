@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "build":"electron-packager . LaravelElectron --out=dist"
+    "build": "electron-packager . LaravelElectron --out=dist"
   },
   "repository": "",
   "keywords": [
@@ -21,6 +21,7 @@
   "license": "cc-by-4.0",
   "devDependencies": {
     "electron": "^17.0.0",
+    "electron-devtools-installer": "^3.2.0",
     "electron-packager": "^15.4.0"
   },
   "dependencies": {

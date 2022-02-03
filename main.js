@@ -1,5 +1,6 @@
 const electron = require('electron')
 const path = require('path')
+const { default: installExtension } = require('electron-devtools-installer');
 
 const BrowserWindow = electron.BrowserWindow
 const app = electron.app
@@ -79,3 +80,9 @@ app.on('activate', function () {
     createWindow()
   }
 })
+
+app.whenReady().then(() => {
+  installExtension('fopaemeedckajflibkpifppcankfmbhk')
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((err) => console.log('An error occurred: ', err));
+});
