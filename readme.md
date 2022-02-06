@@ -11,12 +11,12 @@
 
 ## Install
 - npm install
-- composer create-project laravel/laravel www
+- cd www
+- composer install
+- npm install
 
 ## Run
 - npm start
-- cd www
-- php artisan serve
 
 ## Build for Windows
 - npm build
