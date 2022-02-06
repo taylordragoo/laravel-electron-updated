@@ -9,6 +9,10 @@ class Counter extends Model
 {
     use HasFactory;
 
+    protected $conection = 'sqlite';
+
+    protected $table = 'counter';
+
     protected $primaryKey = 'ID';
 
     protected $fillable = [

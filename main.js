@@ -1,9 +1,13 @@
+'use strict';
+
+const electronUtil = require('electron-util');
 const electron = require('electron')
 const path = require('path')
 const { default: installExtension } = require('electron-devtools-installer');
 
 const BrowserWindow = electron.BrowserWindow
 const app = electron.app
+const phpPath = electronUtil.fixPathForAsarUnpack(path.join(__dirname,'php','php.exe'));
 
 app.on('ready', () => {
   createWindow()
@@ -24,7 +28,7 @@ function createWindow() {
     base: `${__dirname}/www/public`,
     keepalive: false,
     open: false,
-    bin: `${__dirname}/php/php.exe`,
+    bin: __dirname + `/php/php.exe`,
     router: __dirname + '/www/server.php'
   });
 
@@ -57,6 +61,10 @@ function createWindow() {
   })
 }
 
+app.on('uncaughtException', function (err) {
+  console.log(err);
+});
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -66,11 +74,11 @@ function createWindow() {
 app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
+  // if (process.platform !== 'darwin') {
     // PHP SERVER QUIT
     phpServer.close();
     app.quit();
-  }
+  // }
 })
 
 app.on('activate', function () {
